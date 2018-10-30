@@ -29,7 +29,28 @@ int main(){
     printf( (fileStat.st_mode & S_IWOTH) ? "w" : "-");
     printf( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
 
-
+    char size[100];
+    char *format = "%ld B";
+    long file_size = fileStat.st_size;
+      
+    if(file_size/1000 > 0){
+      file_size /= 1000;
+      format = "%ld KB";
+    }
+    
+    if(file_size/1000 > 0){
+      file_size /= 1000;
+      format = "%ld MB";
+    }
+    
+    if(file_size/1000 > 0){
+      file_size /= 1000;
+      format = "%ld GB";
+    }
+    
+    sprintf(size, format, file_size);
+    
+    printf("\nFile Size (Reformatted): %s\n", size);
     //printf("\n%o\n",fileStat.st_mode & 0x1FF);
 
     printf("\n\n");
