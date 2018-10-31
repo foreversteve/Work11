@@ -4,6 +4,8 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <time.h>
+#include <sys/types.h>
+#include <pwd.h>
 
 
 int main(){
@@ -14,7 +16,7 @@ int main(){
  
     printf("\nInformation for %s\n","in.txt");
     printf("---------------------------\n");
-    printf("File Size: \t\t%lld bytes\n",fileStat.st_size);
+    printf("File Size: \t\t%ld bytes\n",fileStat.st_size);
 
     printf("File Access Time: \t%s",ctime(&fileStat.st_atime));
 
@@ -28,6 +30,10 @@ int main(){
     printf( (fileStat.st_mode & S_IROTH) ? "r" : "-");
     printf( (fileStat.st_mode & S_IWOTH) ? "w" : "-");
     printf( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
+
+    
+    printf("\nUser ID: \t\t%s\n", getpwuid(fileStat.st_uid) -> pw_name);
+    printf("Group ID: \t\t%s\n", getpwuid(fileStat.st_gid) -> pw_name);
 
     char size[100];
     char *format = "%ld B";
