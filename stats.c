@@ -33,7 +33,7 @@ int main(){
 
     
     printf("\nUser ID: \t\t%s\n", getpwuid(fileStat.st_uid) -> pw_name);
-    printf("Group ID: \t\t%s\n", getpwuid(fileStat.st_gid) -> pw_name);
+    //printf("Group ID: \t\t%s\n", getpwuid(fileStat.st_gid) -> pw_name);
 
     char size[100];
     char *format = "%ld B";
